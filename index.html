@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyH84BwJ_Pip4yoyYiZjwwBgxXfoMjmswrzoDBt2DK2M-s_-ELQ01jAeeiKKJj0lDbo8EjwNfDzpE8IVPuJkOnoxkeYUldK9Oq5llbM_Zfw6HuT89Q4C6MHLt7bVsn0aIG4xecK69PCSg/s1600/f17.gif');
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80');
       background-size: cover;
       background-position: center;
       color: #fff;
@@ -16,7 +16,7 @@
       padding: 40px;
     }
     .container {
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -49,20 +49,101 @@
       font-style: italic;
       color: #ffb6c1;
     }
+
+    /* Estilo do slideshow */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: 30px auto;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .slides {
+      display: none;
+      width: 100%;
+    }
+    .fade {
+      animation: fadeEffect 1.5s;
+    }
+    @keyframes fadeEffect {
+      from {opacity: 0.4}
+      to {opacity: 1}
+    }
+    .dot-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dot {
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .active {
+      background-color: #ff4d6d;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Para Você ❤️</h1>
+    <h1>Para Mayara ❤️</h1>
     <p>Desde que você chegou, minha vida ganhou novas cores.<br>
     Não é só sobre amor, é sobre paz, sobre lar, sobre ter alguém que faz até os dias comuns se tornarem especiais.</p>
     <p>Eu não quero apenas estar com você, eu quero ser com você.<br>
     Quero construir cada capítulo, cada sorriso e até cada silêncio ao seu lado.</p>
     <p>Se o mundo perguntasse qual é o meu lugar favorito,<br>
     eu diria sem pensar: no teu abraço.</p>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+      <img class="slides fade" src="imagens.jpg" alt="Ft1">
+      <img class="slides fade" src="imagens.jpg" alt="Ft2">
+      <img class="slides fade" src="imagens.jpg" alt="Ft3">
+      <img class="slides fade" src="imagens.jpg" alt="Ft4">
+      <img class="slides fade" src="imagens.jpg" alt="Ft5">
+
+    </div>
+    <div class="dot-container">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+
     <div class="heart">❤</div>
     <div class="footer">Com todo meu amor.</div>
   </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      let dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 3000); // Muda a cada 3 segundos
+    }
+
+    function currentSlide(n) {
+      slideIndex = n-1;
+      showSlides();
+    }
+  </script>
 </body>
 </html>
 
